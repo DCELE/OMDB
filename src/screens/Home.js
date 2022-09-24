@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, Image } from 'react-native-ui-lib';
+import { View, Text, Button, Image, TouchableOpacity } from 'react-native-ui-lib';
 import { FlatList } from 'react-native';
 import { discoverMovies } from '../services/API';
 import MoviePreview from '../components/MoviePreview'
@@ -48,21 +48,26 @@ export default function Home({ navigation }) {
 
 function movie({ item }) {
     console.log(item)
+
+    const onPress = () => {
+
+    }
+
     return (
-        <View marginV-35 >
+        <TouchableOpacity marginV-35 onPress={onPress} >
             <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
                 style={{ width: '100%', borderRadius: 20 }}
                 aspectRatio={0.5}
             />
-            <View marginH-40 marginB-40 abs absB >
+            <View marginH-20 marginB-40 abs absB >
                 <View row>
-                    <View center marginR-15 style={{ borderColor: 'white' ,borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
+                    <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
                         <Text white>{item.vote_average}</Text>
                     </View>
                     <Text text50 white>{item.title}</Text>
                 </View>
                 <Text numberOfLines={2} white>{item.overview}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native-ui-lib';
+import { View, Text, TouchableOpacity, Incubator } from 'react-native-ui-lib';
+const { TextField } = Incubator
 import { FlatList } from 'react-native';
 import { searchShow } from '../services/API';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function Search({ }) {
+export default function Search({ navigation }) {
 
     const [text, setText] = useState([]);
     const [search, setSearch] = useState("");
@@ -23,11 +24,11 @@ export default function Search({ }) {
             <View useSafeArea>
                 <View >
                     <View >
-                        <TextInput
+                        <TextField
                             onChangeText={setText}
                             value={text}
                             placeholder={'Search'}>
-                        </TextInput>
+                        </TextField>
                     </View>
                     <TouchableOpacity
                         onPress={onSearch}>

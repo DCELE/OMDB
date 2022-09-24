@@ -55,9 +55,9 @@ function movie({ item }) {
                 aspectRatio={0.5}
             />
             <View marginH-40 marginB-40 abs absB >
-                <View>
-                    <View style={{ borderStyle: 'solid', borderRadius: 100 }}>
-                        <Text>{item.average_vote}</Text>
+                <View row>
+                    <View center marginR-15 style={{ borderColor: 'white' ,borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
+                        <Text white>{item.vote_average}</Text>
                     </View>
                     <Text text50 white>{item.title}</Text>
                 </View>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button } from 'react-native-ui-lib';
+import { View, Text, Button, Image } from 'react-native-ui-lib';
 import { FlatList } from 'react-native';
 import { discoverMovies } from '../services/API';
+import MoviePreview from '../components/MoviePreview'
 
 export default function Home({ navigation }) {
 
@@ -12,11 +13,10 @@ export default function Home({ navigation }) {
     const fetchMovies = () => {
         if (isLoading) return
         setIsLoading(true)
-        console.log(movies)
         discoverMovies(page)
             .then(response => {
-                console.log(response.results)
-                setMovies(prev => [...prev, response.results])
+                setMovies(prev => [...prev, ...response.results])
+                setPage(prev => prev + 1)
             }).catch(error => {
                 console.log(error)
             }).finally(() => {
@@ -28,14 +28,18 @@ export default function Home({ navigation }) {
         fetchMovies()
     }, [])
 
+    const renderItem = ({ item }) => {
+        <MoviePreview item={item}></MoviePreview>
+    }
+
     return (
-        <View useSafeArea style={{ flex: 1, alignItems: 'center' }}>
+        <View useSafeArea paddingH-20 center>
             <Text>OMDB</Text>
             <Text style={{ fontSize: 26, fontWeight: 'bold' }}>Discover Movies</Text>
             <FlatList
                 data={movies}
                 renderItem={movie}
-                keyExtractor={movie => movie.id}
+                keyExtractor={item => item.id}
             />
             <Button label={'Load more'} onPress={fetchMovies}></Button>
         </View>
@@ -44,8 +48,21 @@ export default function Home({ navigation }) {
 
 function movie({ item }) {
     console.log(item)
-
     return (
-        <Text> Movie {item.id}</Text>
+        <View marginV-35 >
+            <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
+                style={{ width: '100%', borderRadius: 20 }}
+                aspectRatio={0.5}
+            />
+            <View marginH-40 marginB-40 abs absB >
+                <View>
+                    <View style={{ borderStyle: 'solid', borderRadius: 100 }}>
+                        <Text>{item.average_vote}</Text>
+                    </View>
+                    <Text text50 white>{item.title}</Text>
+                </View>
+                <Text numberOfLines={2} white>{item.overview}</Text>
+            </View>
+        </View>
     )
 }

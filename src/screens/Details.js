@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image } from 'react-native-ui-lib'
-import { getMovieDetail } from '../services/API'
+import { getMovieDetail, getMovieCast } from '../services/API'
 
 export default function Details({ navigation, route }) {
 
     const { movieId } = route.params
     const [movieDetail, setMovieDetail] = useState([])
+    const [movieCast, setMovieCast] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const fetchMovieDetail = () => {
@@ -56,7 +57,7 @@ function Loaded({ movieDetail }) {
 
                     </View>
                     <Text white marginT-10>{movieDetail.release_date}</Text>
-                    <Text white marginT-10>{movieDetail.genre_ids}</Text>
+                    <Text white marginT-10>{}</Text>
                 </View>
             </View>
             <View marginL-15 marginR-15>

@@ -14,6 +14,14 @@ export async function getMovieDetail(id) {
     return result.data;
 };
 
+//Movie Cast
+export async function getMovieCast(id) {
+    const result = await instance.get(`/movie/${id}/credits`, {
+        params: { api_key}
+    })
+    return result.data;
+}
+
 //Search movie og tv show
 export async function searchMovies(query, page) {
     const result = await instance.get(`/search/movie`, {

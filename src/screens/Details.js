@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image } from 'react-native-ui-lib'
+import MovieCast from '../components/MovieCast'
 import { getMovieDetail, getMovieCast } from '../services/API'
 
 export default function Details({ navigation, route }) {
@@ -57,14 +58,14 @@ function Loaded({ movieDetail }) {
 
                     </View>
                     <Text white marginT-10>{movieDetail.release_date}</Text>
-                    <Text white marginT-10>{}</Text>
+                    <Text white marginT-10>{ }</Text>
                 </View>
             </View>
             <View marginL-15 marginR-15>
                 <Text text50 marginT-10 marginB-10>Synopsis</Text>
                 <Text>{movieDetail.overview}</Text>
             </View>
-
+            <MovieCast></MovieCast>
         </React.Fragment>
     )
 }

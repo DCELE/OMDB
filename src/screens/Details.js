@@ -40,21 +40,21 @@ export default function Details({ navigation, route }) {
 
                 <View marginH-20 marginB-20 abs absB >
                     <View row>
-                        <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
-                            <Text white>{movieDetail.vote_average}</Text>
+                        <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 35, borderRadius: 100 }}>
+                            <Text white>{movieDetail.vote_average.toFixed(1)}</Text>
                         </View>
                         <Text text50 white>{movieDetail.title}</Text>
-                        
+
                     </View>
                     <Text white marginT-10>{movieDetail.release_date}</Text>
                     <Text white marginT-10>{movieDetail.genre_ids}</Text>
                 </View>
             </View>
             <View>
-                <Text text50 marginT-10 marginB-10>Synopsis</Text> 
+                <Text text50 marginT-10 marginB-10>Synopsis</Text>
                 <Text>{movieDetail.overview}</Text>
             </View>
-               
+
         </View>
     );
 }

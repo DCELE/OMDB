@@ -11,8 +11,8 @@ export default function MoviePreview({ item, onPress = () => { } }) {
             />
             <View marginH-20 marginB-40 abs absB >
                 <View row>
-                    <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
-                        <Text white>{item.vote_average}</Text>
+                    <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 35, borderRadius: 100 }}>
+                        <Text white>{item.vote_average.toFixed(1)}</Text>
                     </View>
                     <Text text50 white>{item.title}</Text>
                 </View>

@@ -10,12 +10,13 @@ export default function Search({ navigation }) {
 
     const [page, setPage] = useState(1)
     const [movies, setMovies] = useState([])
-    const textFieldRef = useRef()
+    const inputRef = useRef();
 
     const onCancel = () => {
+        debouncedResults.cancel()
         setPage(1)
         setMovies([])
-        textFieldRef.current.value = ""
+        inputRef.current.clear()
     }
 
     const onSearch = async (text) => {
@@ -31,6 +32,7 @@ export default function Search({ navigation }) {
     const debouncedResults = useMemo(() => {
         return debounce(onSearch, 300);
     }, []);
+
 
     useEffect(() => {
         return () => {
@@ -51,7 +53,7 @@ export default function Search({ navigation }) {
             <View row centerV style={{ borderWidth: 1 }}>
                 <Ionicons style={{ marginHorizontal: 3 }} name='search' size={25} />
                 <TextField
-                    ref={textFieldRef}
+                    ref={inputRef}
                     style={{ height: 40 }}
                     onChangeText={debouncedResults}
                     placeholder={'Search...'}>

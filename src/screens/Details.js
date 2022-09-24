@@ -3,22 +3,15 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image } from 'react-native-ui-lib'
 import { getMovieDetail } from '../services/API'
 
-
-
-
 export default function Details({ navigation, route }) {
-    
+
     const { movieId } = route.params
     const [movieDetail, setMovieDetail] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-
+    const [isLoading, setIsLoading] = useState(true)
 
     const fetchMovieDetail = () => {
-        if (isLoading) return
-        setIsLoading(true)
         getMovieDetail(movieId)
             .then(response => {
-                console.log(response.results)
                 setMovieDetail(response)
             }).catch(error => {
                 console.log(error)
@@ -32,6 +25,22 @@ export default function Details({ navigation, route }) {
 
     return (
         <View useSafeArea style={{ flex: 1, alignItems: 'center' }}>
+            {isLoading ? <IsLoading /> : <Loaded movieDetail={movieDetail} />}
+        </View>
+    );
+}
+
+function IsLoading() {
+    return (
+        <View>
+            <Text>Is Loading...</Text>
+        </View>
+    )
+}
+
+function Loaded({ movieDetail }) {
+    return (
+        <React.Fragment>
             <View>
                 <Image source={{ uri: `https://image.tmdb.org/t/p/w500${movieDetail.poster_path}` }}
                     style={{ width: '100%' }}
@@ -55,7 +64,6 @@ export default function Details({ navigation, route }) {
                 <Text>{movieDetail.overview}</Text>
             </View>
 
-        </View>
-    );
+        </React.Fragment>
+    )
 }
-

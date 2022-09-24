@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { View, Text, Incubator, Image, TouchableOpacity } from 'react-native-ui-lib';
-const { TextField } = Incubator
+import { View, Text, Incubator, Image, TextField, TouchableOpacity } from 'react-native-ui-lib';
+//const { TextField } = Incubator
 import { FlatList } from 'react-native';
 import { searchMovies } from '../services/API';
 import debounce from 'lodash.debounce';
@@ -54,7 +54,7 @@ export default function Search({ navigation }) {
                 <Ionicons style={{ marginHorizontal: 3 }} name='search' size={25} />
                 <TextField
                     ref={inputRef}
-                    style={{ height: 40 }}
+                    style={{ height: 40, width: '70%' }}
                     onChangeText={debouncedResults}
                     placeholder={'Search...'}>
                 </TextField>

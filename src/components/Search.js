@@ -8,14 +8,13 @@ export default function Search({ }) {
     const [text, setText] = useState();
     const [search, setSearch] = useState();
 
-    const onSearch = (query) => {
-        searchShow(query.searchMovieOrTv.movies, query.searchMovieOrTv.tv)
+    const onSearch = () => {
+        searchShow(text.searchMovieOrTv.movies, text.searchMovieOrTv.tv)
             .then(([movies, tv]) => {
                 const data = [...movies, ...tv]
                 setSearch(data)
             }).catch(() => {
             })
-
     }
 
     return (
@@ -30,9 +29,7 @@ export default function Search({ }) {
                         </TextInput>
                     </View>
                     <TouchableOpacity
-                        onPress={() => {
-                            onSearch((text))
-                        }}>
+                        onPress={onSearch}>
                         <Ionicons name={'search-outline'} />
                     </TouchableOpacity>
 

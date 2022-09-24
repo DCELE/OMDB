@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const API_KEY = '6901b7677b691dcb80ee096b90691596'
+const api_key = '6901b7677b691dcb80ee096b90691596'
 
 const instance = axios.create({
-    BASE_URL: process.env.DB_URL ?? 'https://api.themoviedb.org/3'
+    baseURL: 'https://api.themoviedb.org/3'
 })
 
 //Movie details
@@ -20,7 +20,7 @@ export async function searchShow(query, type) {
 
 export async function discoverMovies(page) {
     const result = await instance.get('/discover/movie', {
-        params: { api_key: API_KEY, page: page }
+        params: { api_key, page }
     })
     return result.data;
 }

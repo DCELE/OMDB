@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native-ui-lib';
+import { FlatList } from 'react-native';
 import { searchShow } from '../services/API';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function Search({ }) {
 
-    const [text, setText] = useState();
-    const [search, setSearch] = useState();
+    const [text, setText] = useState([]);
+    const [search, setSearch] = useState("");
 
     const onSearch = () => {
         searchShow(text.searchMovieOrTv.movies, text.searchMovieOrTv.tv)
@@ -19,7 +20,7 @@ export default function Search({ }) {
 
     return (
         <React.Fragment>
-            <SafeAreaView>
+            <View useSafeArea>
                 <View >
                     <View >
                         <TextInput
@@ -44,13 +45,13 @@ export default function Search({ }) {
 
                     {!search && (
                         <View >
-                            <Text>
+                            <Text >
                                 Search movie or TV show
                             </Text>
                         </View>
                     )}
                 </View>
-            </SafeAreaView>
+            </View>
         </React.Fragment>
 
     );

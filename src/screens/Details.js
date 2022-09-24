@@ -7,44 +7,31 @@ import { getMovieDetail } from '../services/API'
 
 
 export default function Details({ navigation, route }) {
-
+    
     const { movieId } = route.params
-    const [movieDetail, setMovieDetail] = useState({})
+    const [movieDetail, setMovieDetail] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
+
     const fetchMovieDetail = () => {
+        if (isLoading) return
+        setIsLoading(true)
         getMovieDetail(movieId)
             .then(response => {
+                console.log(response.results)
                 setMovieDetail(response)
             }).catch(error => {
                 console.log(error)
             }).finally(() => {
-                setIsLoading(true)
+                setIsLoading(false)
             })
     }
-
     useEffect(() => {
         fetchMovieDetail()
     }, [])
 
     return (
-        <View useSafeArea flex >
-            {!isLoading ? <Loading /> : <Loaded movieDetail={movieDetail} />}
-        </View>
-    );
-}
-
-function Loading() {
-    return (
-        <View>
-            <Text>isLoading</Text>
-        </View>
-    )
-}
-
-function Loaded({ movieDetail }) {
-    return (
-        <React.Fragment>
+        <View useSafeArea style={{ flex: 1, alignItems: 'center' }}>
             <View>
                 <Image source={{ uri: `https://image.tmdb.org/t/p/w500${movieDetail.poster_path}` }}
                     style={{ width: '100%' }}
@@ -67,7 +54,8 @@ function Loaded({ movieDetail }) {
                 <Text text50 marginT-10 marginB-10>Synopsis</Text>
                 <Text>{movieDetail.overview}</Text>
             </View>
-        </React.Fragment>
-    )
+
+        </View>
+    );
 }
 

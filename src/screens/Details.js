@@ -7,7 +7,7 @@ import { getMovieDetail } from '../services/API'
 
 
 export default function Details({ navigation, route }) {
-
+    
     const { movieId } = route.params
     const [movieDetail, setMovieDetail] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -34,7 +34,7 @@ export default function Details({ navigation, route }) {
         <View useSafeArea style={{ flex: 1, alignItems: 'center' }}>
             <View>
                 <Image source={{ uri: `https://image.tmdb.org/t/p/w500${movieDetail.poster_path}` }}
-                    style={{ width: '100%', borderRadius: 20 }}
+                    style={{ width: '100%' }}
                     aspectRatio={1}
                 />
 
@@ -50,7 +50,7 @@ export default function Details({ navigation, route }) {
                     <Text white marginT-10>{movieDetail.genre_ids}</Text>
                 </View>
             </View>
-            <View>
+            <View marginL-15 marginR-15>
                 <Text text50 marginT-10 marginB-10>Synopsis</Text>
                 <Text>{movieDetail.overview}</Text>
             </View>

@@ -27,7 +27,7 @@ export default function TabBar() {
                 },
             })}
         >
-            <Tab.Screen name='Home' component={HomeStack} options={{ title: 'OMDB', headerTitleAlign: 'center' }} />
+            <Tab.Screen name='Home' component={HomeStack} options={{ headerShown: false }} />
             <Tab.Screen name='Search' component={Search} options={{ headerShown: false }} />
         </Tab.Navigator>
     );

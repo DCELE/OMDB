@@ -17,7 +17,6 @@ export default function MovieCasts({ id }) {
             })
     }, [])
 
-
     const renderItem = ({ item }) => {
         return (
             <View center marginH-5 style={{ width: 100 }}>

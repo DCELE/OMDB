@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from '../theme/Colors'
 
 // Screens
-import Search from '../screens/Search';
 import HomeStack from './HomeStack';
+import SearchStack from './SearchStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +18,7 @@ export default function TabBar() {
                     let rn = route.name;
                     if (rn === 'HomeStack') {
                         iconName = focused ? 'home' : 'home-outline'
-                    } else if (rn === 'Search') {
+                    } else if (rn === 'SearchStack') {
                         iconName = focused ? 'search' : 'search-outline';
                     }
                     // You can return any component that you like here!
@@ -28,7 +27,7 @@ export default function TabBar() {
             })}
         >
             <Tab.Screen name='HomeStack' component={HomeStack} options={{ headerShown: false }} />
-            <Tab.Screen name='Search' component={Search} options={{ headerShown: false }} />
+            <Tab.Screen name='SearchStack' component={SearchStack} options={{ headerShown: false }} />
         </Tab.Navigator>
     );
 }

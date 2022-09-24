@@ -42,9 +42,15 @@ export default function Search({ navigation }) {
     const renderItem = ({ item }) => {
         return (
             <View marginV-10>
-                <Preview movie={item} />
+                <Preview movie={item} onPress={onPreviewPress} />
             </View>
         )
+    }
+
+    const onPreviewPress = (id) => {
+        navigation.navigate('Details', {
+            movieId: id,
+        })
     }
 
     return (
@@ -72,14 +78,17 @@ export default function Search({ navigation }) {
     );
 }
 
-function Preview({ movie }) {
+function Preview({ movie, onPress = () => { } }) {
     return (
-        <View row>
-            <Image marginR-10 aspectRatio={0.7} style={{ height: 120 }} source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }} />
-            <View centerV>
-                <Text text70>{movie.title}</Text>
-                <Text>{movie.release_date}</Text>
+        <TouchableOpacity onPress={() => onPress(movie.id)}>
+            <View row>
+                <Image marginR-10 aspectRatio={0.7} style={{ height: 120 }} source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }} />
+                <View centerV>
+                    <Text text70>{movie.title}</Text>
+                    <Text>{movie.release_date}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
+
     )
 }

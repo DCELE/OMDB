@@ -28,12 +28,14 @@ export default function Home({ navigation }) {
         fetchMovies()
     }, [])
 
-    const onPreviewPress = () => {
-        navigation.navigate('Details')
+    const onPreviewPress = (id) => {
+        navigation.navigate('Details', {
+            movieId: id,
+        })
     }
 
     const renderItem = ({ item }) => {
-        return <MoviePreview item={item} onPress={onPreviewPress}></MoviePreview>
+        return <MoviePreview item={item} onPress={() => onPreviewPress(item.id)}></MoviePreview>
     }
 
     return (

@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { View } from 'react-native-ui-lib'
+import { View, Text, Image } from 'react-native-ui-lib'
 import { getMovieDetail } from '../services/API'
 
 
 
 
-export default function Details({ navigation }) {
+export default function Details({ navigation, route }) {
+
+    const { movieId } = route.params
     const [movieDetail, setMovieDetail] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+
 
     const fetchMovieDetail = () => {
         if (isLoading) return
@@ -16,7 +19,7 @@ export default function Details({ navigation }) {
         getMovieDetail(movieId)
             .then(response => {
                 console.log(response.results)
-                setMovieDetail()
+                setMovieDetail(response)
             }).catch(error => {
                 console.log(error)
             }).finally(() => {
@@ -29,11 +32,29 @@ export default function Details({ navigation }) {
 
     return (
         <View useSafeArea style={{ flex: 1, alignItems: 'center' }}>
-            <ScrollView>
+            <View>
+                <Image source={{ uri: `https://image.tmdb.org/t/p/w500${movieDetail.poster_path}` }}
+                    style={{ width: '100%', borderRadius: 20 }}
+                    aspectRatio={1}
+                />
 
-                <Text>{movieDetail}</Text>
-                </ScrollView>
-            <Button label={'Load more'} onPress={fetchMovies}></Button>
+                <View marginH-20 marginB-20 abs absB >
+                    <View row>
+                        <View center marginR-15 style={{ borderColor: 'white', borderWidth: 1, width: 35, height: 30, borderRadius: 100 }}>
+                            <Text white>{movieDetail.vote_average}</Text>
+                        </View>
+                        <Text text50 white>{movieDetail.title}</Text>
+                        
+                    </View>
+                    <Text white marginT-10>{movieDetail.release_date}</Text>
+                    <Text white marginT-10>{movieDetail.genre_ids}</Text>
+                </View>
+            </View>
+            <View>
+                <Text text50 marginT-10 marginB-10>Synopsis</Text> 
+                <Text>{movieDetail.overview}</Text>
+            </View>
+               
         </View>
     );
 }

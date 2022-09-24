@@ -4,8 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../theme/Colors'
 
 // Screens
-import Home from '../screens/Home';
 import Search from '../screens/Search';
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +27,7 @@ export default function TabBar() {
                 },
             })}
         >
-            <Tab.Screen name='Home' component={Home} />
+            <Tab.Screen name='Home' component={HomeStack} />
             <Tab.Screen name='Search' component={Search} />
         </Tab.Navigator>
     );

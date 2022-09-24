@@ -46,7 +46,7 @@ export default function Home({ navigation }) {
     );
 }
 
-function movie({ item }) {
+function movie({ item, navigation}) {
     console.log(item)
 
     const onPress = () => {

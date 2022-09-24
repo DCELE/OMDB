@@ -35,7 +35,11 @@ export default function Home({ navigation }) {
     }
 
     const renderItem = ({ item }) => {
-        return <MoviePreview item={item} onPress={() => onPreviewPress(item.id)}></MoviePreview>
+        return (
+            <View marginV-12>
+                <MoviePreview item={item} onPress={() => onPreviewPress(item.id)}></MoviePreview>
+            </View>
+        )
     }
 
     return (

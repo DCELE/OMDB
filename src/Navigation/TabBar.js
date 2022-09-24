@@ -17,7 +17,7 @@ export default function TabBar() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     let rn = route.name;
-                    if (rn === 'Home') {
+                    if (rn === 'HomeStack') {
                         iconName = focused ? 'home' : 'home-outline'
                     } else if (rn === 'Search') {
                         iconName = focused ? 'search' : 'search-outline';
@@ -27,7 +27,7 @@ export default function TabBar() {
                 },
             })}
         >
-            <Tab.Screen name='Home' component={HomeStack} options={{ headerShown: false }} />
+            <Tab.Screen name='HomeStack' component={HomeStack} options={{ headerShown: false }} />
             <Tab.Screen name='Search' component={Search} options={{ headerShown: false }} />
         </Tab.Navigator>
     );

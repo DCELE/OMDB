@@ -17,7 +17,7 @@ export async function getMovieDetail(id) {
 //Movie Cast
 export async function getMovieCast(id) {
     const result = await instance.get(`/movie/${id}/credits`, {
-        params: { api_key}
+        params: { api_key }
     })
     return result.data;
 }

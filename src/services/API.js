@@ -7,14 +7,18 @@ const instance = axios.create({
 })
 
 //Movie details
-export async function getMovieDetail() {
-    const result = await instance.get(`/${id}`);
+export async function getMovieDetail(id) {
+    const result = await instance.get(`/movie/${id}`, {
+        params: { api_key }
+    });
     return result.data;
 };
 
 //Search movie og tv show
-export async function searchShow(query, type) {
-    const result = await instance.get(`/${type}?${API_KEY}&query=${query}`)
+export async function searchMovies(query, page) {
+    const result = await instance.get(`/search/movie`, {
+        params: { api_key, query, page }
+    })
     return result.data.results;
 }
 

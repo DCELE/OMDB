@@ -11,7 +11,7 @@ export default function Home({ navigation }) {
             .then(response => {
                 console.log("asdasadsda", response)
             }).catch(error => {
-                console.log("iosadaij", error)
+                console.log(error)
             })
     }, [])
 

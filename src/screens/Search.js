@@ -55,8 +55,8 @@ export default function Search({ navigation }) {
 
     return (
         <View useSafeArea margin-10>
-            <View row center style={{ borderWidth: 1 }}>
-                <Ionicons style={{ marginHorizontal: 3 }} name='search' size={25} />
+            <View row center style={{ borderWidth: 1, borderRadius: 15, borderColor: 'grey' }}>
+                <Ionicons style={{ marginHorizontal: 3, color: 'grey' }} name='search' size={25} />
                 <TextInput
                     migrate
                     ref={inputRef}
@@ -65,7 +65,7 @@ export default function Search({ navigation }) {
                     placeholder='Search...'>
                 </TextInput>
                 <TouchableOpacity onPress={onCancel}>
-                    <Ionicons style={{ marginHorizontal: 3 }} name='close' size={25} />
+                    <Ionicons style={{ marginHorizontal: 3, color: 'grey' }} name='close' size={25} />
                 </TouchableOpacity>
             </View>
 
@@ -81,10 +81,10 @@ export default function Search({ navigation }) {
 function Preview({ movie, onPress = () => { } }) {
     return (
         <TouchableOpacity onPress={() => onPress(movie.id)}>
-            <View row>
+            <View row >
                 <Image marginR-10 aspectRatio={0.7} style={{ height: 120 }} source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }} />
-                <View centerV>
-                    <Text text70>{movie.title}</Text>
+                <View centerV style={{ width: '75%' }}>
+                    <Text text70 >{movie.title}</Text>
                     <Text>{movie.release_date}</Text>
                 </View>
             </View>

@@ -50,7 +50,6 @@ export default function Home({ navigation }) {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-            <Button label={'Load more'} onPress={fetchMovies}></Button>
         </View>
     );
 }
